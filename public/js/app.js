@@ -452,7 +452,7 @@ async function fetchShareUrl() {
     const data = await res.json();
     _dynamicShareUrl = data.url;
   } catch (e) {
-    _dynamicShareUrl = window.location.origin;
+    _dynamicShareUrl = 'https://lords-storehouse.onrender.com';
   }
 }
 
