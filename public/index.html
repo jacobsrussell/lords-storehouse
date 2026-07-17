@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The LORD's Store-house | Where Believers Store Treasures in Heaven</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2720;</text></svg>">
+  <meta name="description" content="The LORD's Store-house — A faith-based platform where believers deposit funds, purchase Fisherman's Coins, send offerings, and help one another in times of need.">
+  <meta name="theme-color" content="#1a0533">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="cross-icon">&#10013;</div>
+      <h2>The LORD's Store-house</h2>
+      <p class="preloader-verse">"Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this," says the LORD Almighty, "and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it." — Malachi 3:10</p>
+      <div class="loading-bar"><div class="loading-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== AUTH SCREEN ===== -->
+  <div id="auth-screen">
+    <div class="auth-container">
+      <div class="auth-left">
+        <div class="auth-hero">
+          <div class="auth-cross">&#10013;</div>
+          <h1>The LORD's<br>Store-house</h1>
+          <p class="auth-tagline">Where Believers Store Their Treasures in Heaven</p>
+          <div class="auth-verse-box">
+            <p>"Store up for yourselves treasures in heaven, where moths and vermin do not destroy, and where thieves do not break in and steal." </p>
+            <span>— Matthew 6:20</span>
+          </div>
+          <div class="auth-features">
+            <div class="auth-feature"><span class="af-icon">&#9672;</span><span>Buy & Send Fisherman's Coins</span></div>
+            <div class="auth-feature"><span class="af-icon">&#9672;</span><span>Offer Blessings to Fellow Believers</span></div>
+            <div class="auth-feature"><span class="af-icon">&#9672;</span><span>Earn Referral Rewards</span></div>
+            <div class="auth-feature"><span class="af-icon">&#9672;</span><span>Fellowship in the Temple Chat</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="auth-right">
+        <div class="auth-forms">
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Sign In</button>
+            <button class="auth-tab" data-tab="register">Join the Flock</button>
+          </div>
+
+          <form id="login-form" class="auth-form active">
+            <h2>Welcome Back, Believer</h2>
+            <p class="form-verse">"I am the gate; whoever enters through me will be saved." — John 10:9</p>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="login-email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Enter the Store-house</button>
+            <div id="login-error" class="form-error"></div>
+          </form>
+
+          <form id="register-form" class="auth-form">
+            <h2>Join the Flock</h2>
+            <p class="form-verse">"Here I am! I stand at the door and knock." — Revelation 3:20</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="reg-fullname" placeholder="John Smith" required>
+              </div>
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="reg-username" placeholder="johnsmith" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="reg-email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="reg-phone" placeholder="+27..." >
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="reg-password" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+              <label>Referral Code <span class="optional">(Optional)</span></label>
+              <input type="text" id="reg-referral" placeholder="Enter referral code">
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Join The Store-house</button>
+            <div id="register-error" class="form-error"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN APP ===== -->
+  <div id="app-screen" class="hidden">
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-cross">&#10013;</div>
+        <h3>The LORD's<br>Store-house</h3>
+      </div>
+      <div class="sidebar-user" id="sidebar-user">
+        <img id="sidebar-avatar" src="" alt="Avatar">
+        <div>
+          <p id="sidebar-username" class="su-name"></p>
+          <p id="sidebar-role" class="su-role">Believer</p>
+        </div>
+      </div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="nav-link active" data-section="dashboard"><span class="nav-icon">&#9750;</span>Dashboard</a></li>
+        <li><a href="#" class="nav-link" data-section="wallet"><span class="nav-icon">&#9733;</span>My Wallet</a></li>
+        <li><a href="#" class="nav-link" data-section="coins"><span class="nav-icon">&#9672;</span>Fisherman's Coins</a></li>
+        <li><a href="#" class="nav-link" data-section="offerings"><span class="nav-icon">&#10084;</span>Send Offering</a></li>
+        <li><a href="#" class="nav-link" data-section="storehouse"><span class="nav-icon">&#9883;</span>Store-house Withdraw</a></li>
+        <li><a href="#" class="nav-link" data-section="referrals"><span class="nav-icon">&#10148;</span>Referrals</a></li>
+        <li><a href="#" class="nav-link" data-section="chat"><span class="nav-icon">&#9993;</span>Temple Chat</a></li>
+        <li><a href="#" class="nav-link" data-section="leaderboard"><span class="nav-icon">&#9812;</span>Leaderboard</a></li>
+        <li><a href="#" class="nav-link" data-section="policy"><span class="nav-icon">&#9782;</span>Policy & Pillars</a></li>
+        <li><a href="#" class="nav-link" data-section="faq"><span class="nav-icon">&#10068;</span>Q & A</a></li>
+        <li id="admin-nav-item" class="hidden"><a href="#" class="nav-link admin-nav" data-section="admin"><span class="nav-icon">&#9881;</span>Admin Panel</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <button id="logout-btn" class="btn btn-ghost btn-sm">&#10006; Leave Store-house</button>
+      </div>
+    </nav>
+
+    <!-- MOBILE HEADER -->
+    <header id="mobile-header">
+      <button id="menu-toggle" class="menu-btn">&#9776;</button>
+      <h3>The LORD's Store-house</h3>
+      <button id="mobile-chat-btn" class="btn-icon" data-section="chat">&#9993;</button>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+      <!-- DASHBOARD -->
+      <section id="section-dashboard" class="section active">
+        <div class="section-header">
+          <div>
+            <h1 id="greeting">Shalom, Believer</h1>
+            <p class="section-subtitle" id="welcome-verse">"The LORD will open the heavens, the storehouse of his bounty." — Deuteronomy 28:12</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card gold">
+            <div class="stat-icon">&#9672;</div>
+            <div class="stat-info">
+              <h3 id="stat-coins">0</h3>
+              <p>Fisherman's Coins</p>
+            </div>
+            <div class="stat-verse">"Follow me, and I will make you fishers of men." — Matt 4:19</div>
+          </div>
+          <div class="stat-card purple">
+            <div class="stat-icon">&#8371;</div>
+            <div class="stat-info">
+              <h3 id="stat-balance">R 0.00</h3>
+              <p>Wallet Balance</p>
+            </div>
+            <div class="stat-verse">"For where your treasure is, there your heart will be also." — Matt 6:21</div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-icon">&#10084;</div>
+            <div class="stat-info">
+              <h3 id="stat-offerings">R 0.00</h3>
+              <p>Total Offerings Given</p>
+            </div>
+            <div class="stat-verse">"Each of you should give what you have decided in your heart to give." — 2 Cor 9:7</div>
+          </div>
+          <div class="stat-card blue">
+            <div class="stat-icon">&#10148;</div>
+            <div class="stat-info">
+              <h3 id="stat-referrals">0</h3>
+              <p>Referrals</p>
+            </div>
+            <div class="stat-verse">"Go and make disciples of all nations." — Matt 28:19</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3>Quick Actions</h3>
+            <div class="quick-actions">
+              <button class="quick-btn" data-section="wallet"><span>&#9670;</span>Deposit Funds</button>
+              <button class="quick-btn" data-section="coins"><span>&#9672;</span>Buy Coins</button>
+              <button class="quick-btn" data-section="offerings"><span>&#10084;</span>Send Offering</button>
+              <button class="quick-btn" data-section="storehouse"><span>&#9883;</span>Withdraw</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Store-house Pool</h3>
+            <div class="pool-display">
+              <div class="pool-total">
+                <span class="pool-label">Total Pool</span>
+                <h2 id="pool-total">R 0.00</h2>
+              </div>
+              <div class="pool-bar">
+                <div class="pool-fill" id="pool-fill" style="width: 0%"></div>
+              </div>
+              <p class="pool-info">45% distributable: <strong id="pool-distributable">R 0.00</strong></p>
+              <div class="pool-countdown-box" id="pool-countdown-box">
+                <div class="pool-countdown-label">Next Auto-Distribution In</div>
+                <div class="pool-countdown-timer" id="pool-countdown-timer">
+                  <div class="pct-unit"><span id="pct-days">00</span><label>Days</label></div>
+                  <div class="pct-sep">:</div>
+                  <div class="pct-unit"><span id="pct-hours">00</span><label>Hours</label></div>
+                  <div class="pct-sep">:</div>
+                  <div class="pct-unit"><span id="pct-mins">00</span><label>Mins</label></div>
+                  <div class="pct-sep">:</div>
+                  <div class="pct-unit"><span id="pct-secs">00</span><label>Secs</label></div>
+                </div>
+                <p class="pool-dist-amount">You will receive: <strong id="pool-my-share">R 0.00</strong></p>
+              </div>
+              <p class="pool-verse">"Honor the LORD with your wealth, with the firstfruits of all your crops." — Proverbs 3:9</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Recent Activity</h3>
+          <div id="recent-transactions" class="transactions-list">
+            <p class="empty-state">No transactions yet. Begin your journey by depositing funds into the Store-house.</p>
+          </div>
+          <p class="card-verse">"A man reaps what he sows." — Galatians 6:7</p>
+        </div>
+      </section>
+
+      <!-- WALLET -->
+      <section id="section-wallet" class="section">
+        <div class="section-header">
+          <div>
+            <h1>My Wallet</h1>
+            <p class="section-subtitle">"The LORD will open the heavens, the storehouse of his bounty." — Deuteronomy 28:12</p>
+          </div>
+        </div>
+
+        <div class="wallet-hero">
+          <div class="wallet-card-main">
+            <div class="wallet-card-top">
+              <span class="wallet-label">Store-house Wallet</span>
+              <div class="wallet-cross">&#10013;</div>
+            </div>
+            <h2 class="wallet-amount" id="wallet-balance">R 0.00</h2>
+            <div class="wallet-card-bottom">
+              <div><span class="wl">Deposited</span><strong id="wallet-deposited">R 0.00</strong></div>
+              <div><span class="wl">Withdrawn</span><strong id="wallet-withdrawn">R 0.00</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wallet-actions">
+          <div class="card">
+            <h3>&#9670; Deposit via EFT</h3>
+            <p class="card-verse">"Bring the whole tithe into the storehouse." — Malachi 3:10</p>
+            <div class="deposit-info">
+              <div class="bank-details">
+                <p><strong>Bank:</strong> Capitec Bank</p>
+                <p><strong>Account Name:</strong> Yashwah's Ministries</p>
+                <p><strong>Account Number:</strong> 1166 554 919</p>
+                <p><strong>Account Type:</strong> Savings</p>
+                <p><strong>Branch Code:</strong> 470010</p>
+                <p><strong>Reference:</strong> Your Username</p>
+              </div>
+              <div class="form-group">
+                <label>Deposit Amount (ZAR)</label>
+                <input type="number" id="deposit-amount" placeholder="Enter amount in Rand" min="10" step="0.01">
+              </div>
+              <div class="form-group">
+                <label>EFT Reference / Proof of Payment</label>
+                <input type="text" id="deposit-ref" placeholder="Transaction reference number">
+              </div>
+              <button id="deposit-btn" class="btn btn-primary">Confirm Deposit</button>
+              <p class="info-note">Deposits are credited within 1-24 hours upon verification.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COINS -->
+      <section id="section-coins" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Fisherman's Coins</h1>
+            <p class="section-subtitle">"Come, follow me, and I will send you out to fish for people." — Matthew 4:19</p>
+          </div>
+        </div>
+
+        <div class="coin-hero">
+          <div class="coin-display">
+            <div class="coin-spin">&#9672;</div>
+            <h2>1 Fisherman's Coin = R 50.00</h2>
+            <p>Your Coins: <strong id="coins-balance">0</strong></p>
+            <p class="coin-value">Total Value: <strong id="coins-total-value">R 0.00</strong></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Purchase Fisherman's Coins</h3>
+          <p class="card-verse">"Give, and it will be given to you. A good measure, pressed down, shaken together and running over." — Luke 6:38</p>
+          <div class="coin-packages">
+            <div class="coin-pkg" data-coins="1"><div class="pkg-coin">&#9672;</div><h4>1 Coin</h4><p>R 50.00</p></div>
+            <div class="coin-pkg" data-coins="5"><div class="pkg-coin">&#9672;&#9672;&#9672;&#9672;&#9672;</div><h4>5 Coins</h4><p>R 250.00</p></div>
+            <div class="coin-pkg" data-coins="10"><div class="pkg-coin big">&#9672;</div><h4>10 Coins</h4><p>R 500.00</p><span class="pkg-popular">Popular</span></div>
+            <div class="coin-pkg" data-coins="20"><div class="pkg-coin big">&#9672;</div><h4>20 Coins</h4><p>R 1,000.00</p><span class="pkg-best">Best Value</span></div>
+            <div class="coin-pkg" data-coins="50"><div class="pkg-coin big">&#9672;</div><h4>50 Coins</h4><p>R 2,500.00</p></div>
+            <div class="coin-pkg" data-coins="100"><div class="pkg-coin big gold">&#9672;</div><h4>100 Coins</h4><p>R 5,000.00</p><span class="pkg-holy">Blessed</span></div>
+          </div>
+          <div class="custom-coin">
+            <h4>Or Enter Custom Amount</h4>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Number of Coins</label>
+                <input type="number" id="custom-coin-amount" placeholder="How many coins?" min="1">
+              </div>
+              <div class="form-group">
+                <label>Cost</label>
+                <input type="text" id="custom-coin-cost" readonly placeholder="R 0.00">
+              </div>
+            </div>
+            <button id="buy-coins-btn" class="btn btn-primary">Purchase Coins</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Understanding Fisherman's Coins</h3>
+          <div class="coin-explainer">
+            <div class="ce-item">
+              <h4>&#127967; What Are They?</h4>
+              <p>Fisherman's Coins are the currency of The LORD's Store-house. Each coin represents a seed of faith planted in the Kingdom. Just as Simon Peter was called to be a fisher of men, these coins enable you to cast your nets wide and bless fellow believers.</p>
+            </div>
+            <div class="ce-item">
+              <h4>&#128176; How to Use Them</h4>
+              <p>Use your coins to send offerings to fellow believers, participate in the community pool, and spread blessings. 45% of the pool is distributed among active members as rewards.</p>
+            </div>
+            <div class="ce-item">
+              <h4>&#11088; The Blessing</h4>
+              <p>"A generous person will prosper; whoever refreshes others will be refreshed." — Proverbs 11:25. Every coin you send returns to you in ways you cannot imagine.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OFFERINGS -->
+      <section id="section-offerings" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Send an Offering</h1>
+            <p class="section-subtitle">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7</p>
+          </div>
+        </div>
+
+        <div class="offering-form-card card">
+          <div class="offering-icon">&#10084;</div>
+          <h3>Send Blessings to a Fellow Believer</h3>
+          <p class="offering-verse">"Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap." — Luke 6:38</p>
+
+          <div class="form-group">
+            <label>Recipient's Username</label>
+            <input type="text" id="offering-recipient" placeholder="Enter username of fellow believer">
+          </div>
+          <div class="form-group">
+            <label>Number of Coins to Send</label>
+            <input type="number" id="offering-coins" placeholder="How many coins?" min="1">
+            <p class="form-help">Value: R <span id="offering-value">0.00</span></p>
+          </div>
+          <div class="form-group">
+            <label>Personal Message <span class="optional">(Optional)</span></label>
+            <textarea id="offering-message" placeholder="Write a blessing or message..." rows="3"></textarea>
+          </div>
+          <button id="send-offering-btn" class="btn btn-primary btn-lg">
+            <span>&#10084;</span> Send Offering
+          </button>
+          <div id="offering-success" class="success-msg hidden"></div>
+          <div id="offering-error" class="form-error"></div>
+        </div>
+
+        <div class="card">
+          <h3>&#128220; Scriptures on Giving</h3>
+          <div class="scripture-cards">
+            <div class="scripture-card">
+              <p>"Honor the LORD with your wealth, with the firstfruits of all your crops; then your barns will be filled to overflowing, and your vats will brim over with new wine."</p>
+              <span>— Proverbs 3:9-10</span>
+            </div>
+            <div class="scripture-card">
+              <p>"Whoever is generous to the poor lends to the LORD, and he will repay him for his deed."</p>
+              <span>— Proverbs 19:17</span>
+            </div>
+            <div class="scripture-card">
+              <p>"Sell your possessions and give to the poor. Provide purses for yourselves that will not wear out, a treasure in heaven that will never fail."</p>
+              <span>— Luke 12:33</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STOREHOUSE WITHDRAWAL -->
+      <section id="section-storehouse" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Store-house Withdrawal</h1>
+            <p class="section-subtitle">"The earth is the LORD's, and everything in it." — Psalm 24:1</p>
+          </div>
+        </div>
+
+        <div class="storehouse-hero">
+          <div class="sh-card">
+            <div class="sh-cross">&#10013;</div>
+            <h3>Withdrawing from God's Store-house</h3>
+            <div class="sh-balance">
+              <span>Available Balance</span>
+              <h2 id="sh-balance">R 0.00</h2>
+            </div>
+            <p class="sh-verse">"You will be made rich in every way so that you can be generous on every occasion, and through us your generosity will result in thanksgiving to God." — 2 Corinthians 9:11</p>
+          </div>
+        </div>
+
+        <!-- WITHDRAWAL FREQUENCY STATUS -->
+        <div class="withdrawal-freq-card" id="withdrawal-freq-card">
+          <div class="wf-top">
+            <div class="wf-icon" id="wf-icon">&#9200;</div>
+            <div class="wf-info">
+              <h3 id="wf-title">Checking Withdrawal Status...</h3>
+              <p id="wf-subtitle" class="wf-subtitle">Loading your withdrawal eligibility...</p>
+            </div>
+            <div class="wf-badge" id="wf-badge">Loading</div>
+          </div>
+          <div class="wf-countdown" id="wf-countdown">
+            <div class="wf-timer" id="wf-timer">
+              <div class="wf-timer-unit"><span id="wf-days">0</span><label>Days</label></div>
+              <div class="wf-timer-sep">:</div>
+              <div class="wf-timer-unit"><span id="wf-hours">0</span><label>Hours</label></div>
+              <div class="wf-timer-sep">:</div>
+              <div class="wf-timer-unit"><span id="wf-mins">0</span><label>Minutes</label></div>
+              <div class="wf-timer-sep">:</div>
+              <div class="wf-timer-unit"><span id="wf-secs">0</span><label>Seconds</label></div>
+            </div>
+            <p class="wf-countdown-label" id="wf-countdown-label">Until your next withdrawal</p>
+          </div>
+          <div class="wf-rules">
+            <div class="wf-rule">
+              <span class="wf-rule-icon">&#128337;</span>
+              <div>
+                <strong>Frequency</strong>
+                <p>1 withdrawal per 7 days (once per week)</p>
+              </div>
+            </div>
+            <div class="wf-rule">
+              <span class="wf-rule-icon">&#8371;</span>
+              <div>
+                <strong>Minimum</strong>
+                <p>R50.00 per withdrawal</p>
+              </div>
+            </div>
+            <div class="wf-rule">
+              <span class="wf-rule-icon">&#128176;</span>
+              <div>
+                <strong>Maximum</strong>
+                <p>R50,000.00 per withdrawal</p>
+              </div>
+            </div>
+            <div class="wf-rule">
+              <span class="wf-rule-icon">&#9881;</span>
+              <div>
+                <strong>Fee</strong>
+                <p>5% administration fee on each withdrawal</p>
+              </div>
+            </div>
+            <div class="wf-rule">
+              <span class="wf-rule-icon">&#9889;</span>
+              <div>
+                <strong>Processing</strong>
+                <p>24-48 hours via EFT</p>
+              </div>
+            </div>
+          </div>
+          <p class="wf-verse">"The blessing of the LORD brings wealth, without painful toil for it." — Proverbs 10:22</p>
+        </div>
+
+        <div class="card">
+          <h3>Request Withdrawal</h3>
+          <p class="sh-warning">&#9888; You may only withdraw once every 7 days. A 5% administration fee applies to sustain the Store-house operations. Withdrawals are processed within 24-48 hours via EFT to your registered bank account.</p>
+
+          <div class="bank-details" style="margin: 1rem 0; padding: 1rem; background: rgba(212,175,55,0.08); border-radius: 12px; border: 1px solid rgba(212,175,55,0.2);">
+            <p style="margin-bottom: 0.5rem;"><strong>Withdrawals are sent from:</strong></p>
+            <p><strong>Bank:</strong> Capitec Bank</p>
+            <p><strong>Account Name:</strong> Yashwah's Ministries</p>
+            <p><strong>Account Number:</strong> 1166 554 919</p>
+            <p><strong>Account Type:</strong> Savings</p>
+            <p><strong>Branch Code:</strong> 470010</p>
+          </div>
+
+          <div class="withdrawal-live-fee">
+            <div class="wlf-row">
+              <span>Withdrawal Amount</span>
+              <strong id="wlf-amount">R 0.00</strong>
+            </div>
+            <div class="wlf-row wlf-fee">
+              <span>Administration Fee (5%)</span>
+              <strong id="wlf-fee">- R 0.00</strong>
+            </div>
+            <div class="wlf-divider"></div>
+            <div class="wlf-row wlf-total">
+              <span>You Will Receive</span>
+              <strong id="wlf-net">R 0.00</strong>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Withdrawal Amount (ZAR)</label>
+            <input type="number" id="withdraw-amount" placeholder="Enter amount (min R50)" min="50" max="50000" step="0.01">
+          </div>
+          <div class="form-group">
+            <label>Bank Name</label>
+            <select id="withdraw-bank">
+              <option value="">Select your bank</option>
+              <option value="FNB">FNB (First National Bank)</option>
+              <option value="Standard Bank">Standard Bank</option>
+              <option value="ABSA">ABSA</option>
+              <option value="Nedbank">Nedbank</option>
+              <option value="Capitec">Capitec Bank</option>
+              <option value="Discovery">Discovery Bank</option>
+              <option value="Investec">Investec Bank</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Account Number</label>
+              <input type="text" id="withdraw-account" placeholder="Your bank account number">
+            </div>
+            <div class="form-group">
+              <label>Branch Code</label>
+              <input type="text" id="withdraw-branch" placeholder="Branch code">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Account Holder Name</label>
+            <input type="text" id="withdraw-name" placeholder="Name as it appears on bank account">
+          </div>
+          <button id="withdraw-btn" class="btn btn-primary btn-lg" disabled>Request Withdrawal</button>
+          <p class="withdrawal-btn-note" id="withdrawal-btn-note"></p>
+          <div id="withdraw-success" class="success-msg hidden"></div>
+          <div id="withdraw-error" class="form-error"></div>
+        </div>
+
+        <!-- WITHDRAWAL HISTORY -->
+        <div class="card">
+          <h3>&#128203; Withdrawal History</h3>
+          <p class="card-verse">"I will remember the deeds of the LORD; yes, I will remember your wonders of old." — Psalm 77:11</p>
+          <div class="withdrawal-stats-row">
+            <div class="ws-item">
+              <span class="ws-label">Total Withdrawn</span>
+              <strong id="ws-total">R 0.00</strong>
+            </div>
+            <div class="ws-item">
+              <span class="ws-label">Total Fees Paid</span>
+              <strong id="ws-fees">R 0.00</strong>
+            </div>
+            <div class="ws-item">
+              <span class="ws-label">Completed</span>
+              <strong id="ws-completed">0</strong>
+            </div>
+            <div class="ws-item">
+              <span class="ws-label">Pending</span>
+              <strong id="ws-pending">0</strong>
+            </div>
+          </div>
+          <div id="withdrawal-history" class="withdrawal-history">
+            <p class="empty-state">No withdrawals yet. Your first withdrawal awaits when you are ready.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Scripture on Stewardship</h3>
+          <div class="scripture-cards">
+            <div class="scripture-card">
+              <p>"The earth is the LORD's, and everything in it, the world, and all who live in it; for he founded it on the seas and established it on the waters."</p>
+              <span>— Psalm 24:1-2</span>
+            </div>
+            <div class="scripture-card">
+              <p>"Moreover, when God gives someone wealth and possessions, and the ability to enjoy them, to accept their lot and be happy in their toil — this is a gift of God."</p>
+              <span>— Ecclesiastes 5:19</span>
+            </div>
+            <div class="scripture-card">
+              <p>"The generous will prosper; those who refresh others will themselves be refreshed."</p>
+              <span>— Proverbs 11:25</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFERRALS -->
+      <section id="section-referrals" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Referral Ministry</h1>
+            <p class="section-subtitle">"Go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit." — Matthew 28:19</p>
+          </div>
+        </div>
+
+        <div class="referral-hero">
+          <div class="ref-card">
+            <h3>Your Referral Code</h3>
+            <div class="ref-code-box">
+              <span id="ref-code-display" class="ref-code">Loading...</span>
+              <button id="copy-ref-btn" class="btn btn-sm" title="Copy Code">&#128203; Copy</button>
+            </div>
+            <p class="ref-instruction">Share this code with fellow believers. When they join and participate, you earn rewards from the pool!</p>
+            <div class="ref-stats">
+              <div><h3 id="ref-count">0</h3><p>Referrals</p></div>
+              <div><h3 id="ref-earnings">R 0.00</h3><p>Earnings</p></div>
+            </div>
+            <div class="whatsapp-share-area">
+              <a id="whatsapp-share-btn" class="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 32 32" width="20" height="20" fill="white"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.132 6.744 3.054 9.378L1.054 31.25l6.118-1.97A15.906 15.906 0 0 0 16.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.34 22.612c-.39 1.1-1.932 2.014-3.166 2.28-.844.18-1.946.322-5.658-1.216-4.75-1.966-7.806-6.76-8.04-7.074-.226-.314-1.866-2.486-1.866-4.742 0-2.256 1.184-3.36 1.606-3.816.39-.424.936-.56 1.244-.56.312 0 .62.004.89.016.284.012.664-.106 1.034.788.39.948 1.324 3.23 1.44 3.466.116.236.194.51.04.824-.15.316-.224.512-.44.786-.216.274-.436.49-.66.792-.196.256-.412.53-.168.942.244.41 1.084 1.79 2.326 2.9 1.6 1.43 2.944 1.874 3.378 2.082.324.156.68.118.882-.14.258-.332.578-.854.898-1.376.226-.37.51-.414.856-.28.348.128 2.198 1.038 2.576 1.228.378.19.63.284.724.442.094.158.094.914-.296 1.824z"/></svg>
+                Share on WhatsApp
+              </a>
+              <a id="whatsapp-share-msg-btn" class="whatsapp-btn whatsapp-btn-outline" href="#" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 32 32" width="20" height="20" fill="#25D366"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.132 6.744 3.054 9.378L1.054 31.25l6.118-1.97A15.906 15.906 0 0 0 16.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.34 22.612c-.39 1.1-1.932 2.014-3.166 2.28-.844.18-1.946.322-5.658-1.216-4.75-1.966-7.806-6.76-8.04-7.074-.226-.314-1.866-2.486-1.866-4.742 0-2.256 1.184-3.36 1.606-3.816.39-.424.936-.56 1.244-.56.312 0 .62.004.89.016.284.012.664-.106 1.034.788.39.948 1.324 3.23 1.44 3.466.116.236.194.51.04.824-.15.316-.224.512-.44.786-.216.274-.436.49-.66.792-.196.256-.412.53-.168.942.244.41 1.084 1.79 2.326 2.9 1.6 1.43 2.944 1.874 3.378 2.082.324.156.68.118.882-.14.258-.332.578-.854.898-1.376.226-.37.51-.414.856-.28.348.128 2.198 1.038 2.576 1.228.378.19.63.284.724.442.094.158.094.914-.296 1.824z"/></svg>
+                Send Invitation Message
+              </a>
+            </div>
+            <p class="ref-verse">"Go and make disciples of all nations." — Matthew 28:19</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>How Referrals Work</h3>
+          <div class="ref-explainer">
+            <div class="ref-step">
+              <div class="ref-step-num">1</div>
+              <div>
+                <h4>Share Your Code</h4>
+                <p>Send your unique referral code to friends, family, and fellow believers.</p>
+              </div>
+            </div>
+            <div class="ref-step">
+              <div class="ref-step-num">2</div>
+              <div>
+                <h4>They Join the Flock</h4>
+                <p>When a new believer registers using your referral code, they become part of your vine.</p>
+              </div>
+            </div>
+            <div class="ref-step">
+              <div class="ref-step-num">3</div>
+              <div>
+                <h4>Earn Rewards</h4>
+                <p>45% of the Store-house pool is distributed among active members and referrers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Your Referred Believers</h3>
+          <div id="referral-list" class="referral-list">
+            <p class="empty-state">No referrals yet. Start sharing your code!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEMPLE CHAT -->
+      <section id="section-chat" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Temple of Fellowship</h1>
+            <p class="section-subtitle">"For where two or three gather in my name, there am I with them." — Matthew 18:20</p>
+          </div>
+        </div>
+
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="chat-status">
+              <span class="status-dot" id="chat-status-dot"></span>
+              <span id="chat-status-text">Connecting...</span>
+            </div>
+            <p class="chat-verse">"Therefore encourage one another and build each other up." — 1 Thessalonians 5:11</p>
+          </div>
+          <div id="chat-messages" class="chat-messages">
+            <div class="chat-welcome">
+              <div class="chat-welcome-cross">&#10013;</div>
+              <h3>Welcome to the Temple of Fellowship</h3>
+              <p>"How good and pleasant it is when God's people live together in unity!" — Psalm 133:1</p>
+            </div>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Share a word of encouragement..." maxlength="500">
+            <button id="chat-send-btn" class="btn btn-primary">&#10148;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEADERBOARD -->
+      <section id="section-leaderboard" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Hall of Blessings</h1>
+            <p class="section-subtitle">"Well done, good and faithful servant!" — Matthew 25:21</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>&#127942; Top Believers by Offerings Given</h3>
+          <p class="card-verse">"Whoever is faithful in a very little is faithful also in much." — Luke 16:10</p>
+          <div id="leaderboard-list" class="leaderboard-list">
+            <p class="empty-state">Leaderboard loading...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- POLICY & 7 PILLARS -->
+      <section id="section-policy" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Policy & The Seven Pillars</h1>
+            <p class="section-subtitle">"Wisdom has built her house; she has set up its seven pillars." — Proverbs 9:1</p>
+          </div>
+        </div>
+
+        <div class="policy-intro card">
+          <h2>The Store-house of God: Helping the Believer in Time of Need</h2>
+          <p class="policy-scripture">"Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this," says the LORD Almighty, "and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it." — <strong>Malachi 3:10</strong></p>
+
+          <div class="policy-content">
+            <p>The Store-house of God is a divinely inspired platform established on the biblical principle of communal stewardship and mutual care among believers. Just as the Israelites were commanded to bring their tithes and offerings into the storehouse so that there would be provision for all, this platform serves as a modern-day storehouse where believers come together to deposit their resources, bless one another, and ensure that no member of the body of Christ goes without.</p>
+
+            <p>The Store-house operates on the understanding that <strong>all wealth belongs to God</strong> and that we are merely stewards of what He has entrusted to us. When we give freely and cheerfully, we activate the principles of sowing and reaping, and God multiplies our seed. The Fisherman's Coin system is designed to facilitate the exchange of blessings among believers, creating a cycle of generosity that glorifies God.</p>
+
+            <p>The purpose of this Store-house is threefold: <strong>(1)</strong> To provide a structured and transparent platform for believers to manage their spiritual and financial commitments; <strong>(2)</strong> To foster a community of generosity where believers support one another in times of need; and <strong>(3)</strong> To demonstrate the love of Christ through practical action, showing that the Kingdom of God is alive and active in our daily lives.</p>
+
+            <p>As it is written: <em>"Suppose a brother or a sister is without clothes and daily food. If one of you says to them, 'Go in peace; keep warm and well fed,' but does nothing about their physical needs, what good is it?"</em> — James 2:15-16. The Store-house ensures that we do not merely speak words of blessing but act upon them.</p>
+          </div>
+        </div>
+
+        <div class="pillars-section">
+          <h2 class="pillars-title">&#9878; The Seven Pillars of the Store-house &#9878;</h2>
+          <p class="pillars-subtitle">"Wisdom has built her house; she has set up its seven pillars." — Proverbs 9:1</p>
+
+          <div class="pillar-card" id="pillar-1">
+            <div class="pillar-num">I</div>
+            <div class="pillar-body">
+              <h3>The Pillar of <span>FAITHFUL STEWARDSHIP</span></h3>
+              <p class="pillar-verse">"Whoever can be trusted with very little can also be trusted with much, and whoever is dishonest with very little will also be dishonest with much." — Luke 16:10</p>
+              <p>The first and foremost pillar upon which the Store-house stands is <strong>Faithful Stewardship</strong>. Every coin deposited, every offering sent, and every withdrawal made is managed with the utmost integrity and transparency. We recognize that we are not owners but stewards of God's resources. The Store-house pledges to manage all funds with accountability, regular audits, and open reporting to all members.</p>
+              <p>Just as Joseph was faithful in Potiphar's house and later in all of Egypt, so too must the managers of this Store-house be found faithful. Every transaction is recorded, every coin is tracked, and every member can verify the movement of resources. We hold to the principle that <em>"it is required that those who have been given a trust must prove faithful"</em> — 1 Corinthians 4:2.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card" id="pillar-2">
+            <div class="pillar-num">II</div>
+            <div class="pillar-body">
+              <h3>The Pillar of <span>COMMUNAL GENEROSITY</span></h3>
+              <p class="pillar-verse">"All the believers were together and had everything in common. They sold property and possessions to give to anyone who had need." — Acts 2:44-45</p>
+              <p>The second pillar is <strong>Communal Generosity</strong>, rooted in the early church's practice of sharing all things in common. The Store-house is not a savings account for individual enrichment — it is a living, breathing community where resources flow freely among believers according to need and generosity.</p>
+              <p>The offering system allows believers to send blessings directly to fellow members. The 45% pool distribution ensures that the community as a whole benefits from the collective deposits. This pillar reminds us that <em>"none of the members of the church shall be in need"</em> when we practice radical generosity as commanded in Acts and modeled by the early disciples.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card" id="pillar-3">
+            <div class="pillar-num">III</div>
+            <div class="pillar-body">
+              <h3>The Pillar of <span>SACRED TITHING</span></h3>
+              <p class="pillar-verse">"'Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this,' says the LORD Almighty, 'and see if I will not throw open the floodgates of heaven.'" — Malachi 3:10</p>
+              <p>The third pillar is <strong>Sacred Tithing</strong>. The Store-house is built upon the ancient and unchanging principle that the first portion of our increase belongs to the LORD. When believers deposit funds and purchase Fisherman's Coins, they are engaging in a modern expression of the tithe — setting apart the first fruits of their labor for God's purposes.</p>
+              <p>This pillar teaches us that tithing is not a burden but a <strong>blessing</strong>. It is the one area where God invites us to test Him. When we are faithful in bringing our tithes, God promises to open the windows of heaven. The Store-house facilitates this sacred act, ensuring that every believer has the opportunity to participate in the covenant promise of provision.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card" id="pillar-4">
+            <div class="pillar-num">IV</div>
+            <div class="pillar-body">
+              <h3>The Pillar of <span>DISCIPLE MULTIPLICATION</span></h3>
+              <p class="pillar-verse">"Then Jesus came to them and said, 'All authority in heaven and on earth has been given to me. Therefore go and make disciples of all nations.'" — Matthew 28:18-19</p>
+              <p>The fourth pillar is <strong>Disciple Multiplication</strong>. The referral system is not merely a marketing tool — it is an expression of the Great Commission. When believers introduce others to the Store-house, they are fulfilling the command to make disciples. Every referral represents a soul drawn closer to the community of faith.</p>
+              <p>The rewards distributed through the referral system recognize and honor those who actively participate in growing the Kingdom. As Andrew brought his brother Peter to Jesus, and Philip brought Nathanael, so too are we called to bring others into the fellowship. The 45% pool distribution incentivizes and rewards this Kingdom work.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card" id="pillar-5">
+            <div class="pillar-num">V</div>
+            <div class="pillar-body">
+              <h3>The Pillar of <span>TRANSPARENT JUSTICE</span></h3>
+              <p class="pillar-verse">"The integrity of the upright guides them, but the unfaithful are destroyed by their duplicity." — Proverbs 11:3</p>
+              <p>The fifth pillar is <strong>Transparent Justice</strong>. Every transaction, every deposit, every withdrawal, and every distribution is recorded and visible. The Store-house operates on the principle that there should be no hidden dealings among God's people. As Paul wrote: <em>"For we are taking pains to do what is right, not only in the eyes of the Lord but also in the eyes of man"</em> — 2 Corinthians 8:21.</p>
+              <p>This pillar ensures that all members have access to their transaction history, can verify pool distributions, and trust that the system operates fairly. The withdrawal policy, the distribution formula, and the referral rewards are all governed by clear, unchanging rules that apply equally to every member regardless of status.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card" id="pillar-6">
+            <div class="pillar-num">VI</div>
+            <div class="pillar-body">
+              <h3>The Pillar of <span>URGENT COMPASSION</span></h3>
+              <p class="pillar-verse">"Suppose a brother or a sister is without clothes and daily food. If one of you says to them, 'Go in peace; keep warm and well fed,' but does nothing about their physical needs, what good is it?" — James 2:15-16</p>
+              <p>The sixth pillar is <strong>Urgent Compassion</strong>. The Store-house exists not as a financial institution but as a <strong>ministry of mercy</strong>. Its primary purpose is to help believers in their time of need — whether that need is physical, emotional, or spiritual. The withdrawal system is designed to provide timely assistance to those who face hardship.</p>
+              <p>This pillar is embodied in the words of Jesus: <em>"Whatever you did for one of the least of these brothers and sisters of mine, you did for me"</em> — Matthew 25:40. When a believer makes a withdrawal from the Store-house, they are not taking from others but receiving from the bounty that God has provided through the faithful giving of the community. The Store-house stands as a testament that <strong>God provides through His people</strong>.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card" id="pillar-7">
+            <div class="pillar-num">VII</div>
+            <div class="pillar-body">
+              <h3>The Pillar of <span>ENDURING TRUST</span></h3>
+              <p class="pillar-verse">"And my God will meet all your needs according to the riches of his glory in Christ Jesus." — Philippians 4:19</p>
+              <p>The seventh and final pillar is <strong>Enduring Trust</strong>. The Store-house is ultimately built on the unwavering trust that God is our Provider — <em>Jehovah Jireh</em>. Every mechanism, every rule, and every process in this platform points back to the truth that God supplies all our needs according to His riches in glory.</p>
+              <p>This pillar reminds us that the Store-house is not a bank, not an investment scheme, not a financial product — it is a <strong>living expression of faith</strong>. When we deposit, we trust God. When we give offerings, we trust God. When we wait for distribution, we trust God. The entire system is an exercise in faith, and the reward is not just financial but eternal. As the Psalmist declares: <em>"Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight"</em> — Proverbs 3:5-6.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Terms of Use & Procedures</h3>
+          <div class="policy-content">
+            <h4>1. Account Registration</h4>
+            <p>Every believer must register with accurate personal information. One account per person is permitted. Multiple accounts will result in permanent suspension. By registering, you agree to the principles of the Store-house and commit to operating in integrity.</p>
+
+            <h4>2. Deposits & EFT Transfers</h4>
+            <p>All deposits must be made via Electronic Funds Transfer (EFT) to the designated Store-house bank account. Proof of payment must be submitted through the platform. Deposits are verified and credited within 1-24 hours. The minimum deposit is R10.00.</p>
+
+            <h4>3. Fisherman's Coins</h4>
+            <p>1 Fisherman's Coin = R50.00 (South African Rand). Coins are purchased using your deposited wallet balance. Coins cannot be directly refunded to cash but can be used for offerings or transferred to other believers. The coin value remains fixed.</p>
+
+            <h4>4. Offerings</h4>
+            <p>Believers may send coins as offerings to any registered member. Offerings are a gesture of blessing and fellowship and are non-reversible once sent. The offering system is designed to facilitate generosity, not commerce. All offerings are final.</p>
+
+            <h4>5. Pool Distribution</h4>
+            <p>45% of the total pool (accumulated from deposits and offerings) is distributed among eligible members. Distribution criteria include: active account status, participation in offerings, and referral activity. Distributions are calculated and processed on a monthly cycle.</p>
+
+            <h4>6. Withdrawals</h4>
+            <p>Members may withdraw from their deposited wallet balance at any time. Minimum withdrawal: R50.00. A 5% administration fee applies. Withdrawals are processed within 24-48 hours via EFT to the member's registered bank account. Withdrawals do not affect purchased coins.</p>
+
+            <h4>7. Referral Rewards</h4>
+            <p>Members earn rewards when referred users actively participate in the platform. Referral rewards are drawn from the 45% pool distribution. Manipulation of the referral system through fake accounts or fraudulent activity will result in permanent ban.</p>
+
+            <h4>8. Community Conduct</h4>
+            <p>The Temple Chat is a space for edifying fellowship. Harassment, hate speech, solicitation, or any form of abuse will not be tolerated. All members are expected to conduct themselves with the love, grace, and respect befitting the body of Christ.</p>
+
+            <h4>9. Dispute Resolution</h4>
+            <p>Any disputes will be resolved according to Matthew 18:15-17: first in private, then with witnesses, then before the community leadership. The Store-house leadership team has final authority in all matters of dispute.</p>
+
+            <h4>10. Limitation of Liability</h4>
+            <p>The Store-house operates in good faith. However, all financial activities carry inherent risk. Members are encouraged to give only what they can afford and to seek God's wisdom in all financial decisions. The Store-house is not a bank and deposits are not covered by deposit insurance.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="section-faq" class="section">
+        <div class="section-header">
+          <div>
+            <h1>Questions & Answers</h1>
+            <p class="section-subtitle">"Ask and it will be given to you; seek and you will find; knock and the door will be opened to you." — Matthew 7:7</p>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is The LORD's Store-house?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>The LORD's Store-house is a faith-based web application built on the biblical principle of communal stewardship. Just as God commanded the Israelites to bring their tithes into the storehouse (Malachi 3:10), this platform enables believers to deposit funds, purchase Fisherman's Coins, send offerings to fellow believers, and participate in a community pool that distributes rewards. It is a modern expression of the early church's practice of sharing all things in common (Acts 2:44-45), designed to help believers in their time of need.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is a Fisherman's Coin?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>A Fisherman's Coin is the digital currency of The LORD's Store-house, valued at <strong>R50.00 (South African Rand)</strong> each. The name is inspired by Jesus' calling of the first disciples: <em>"Come, follow me, and I will send you out to fish for people"</em> (Matthew 4:19). Just as fishermen cast their nets to catch fish, believers use these coins to cast blessings across the community. You can purchase coins using your deposited wallet balance and use them to send offerings to other believers.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I deposit money?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Deposits are made via Electronic Funds Transfer (EFT) to the Store-house's designated bank account. Navigate to <strong>My Wallet</strong> and follow these steps:</p>
+              <ol>
+                <li>Send an EFT to: Capitec Bank, Account Name: Yashwah's Ministries, Account Number: 1166 554 919, Branch Code: 470010, Account Type: Savings</li>
+                <li>Use your <strong>username</strong> as the payment reference</li>
+                <li>Enter the deposit amount and transaction reference in the platform</li>
+                <li>Your balance will be credited within 1-24 hours upon verification</li>
+              </ol>
+              <p><em>"Bring the whole tithe into the storehouse, that there may be food in my house."</em> — Malachi 3:10</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How does the Pool work?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>The Store-house Pool is the heart of our community. It is a shared fund that grows from the faithful giving of every believer and returns blessings equally to all active members. Here is how it works, step by step:</p>
+
+              <h4>&#128176; 1. How the Pool Grows</h4>
+              <p>Every time a believer makes a <strong>deposit</strong> or sends an <strong>offering</strong>, the Rand value flows into the Store-house Pool:</p>
+              <ul>
+                <li><strong>EFT Deposits</strong> — When you deposit funds via EFT to the Store-house bank account, the full amount goes into your wallet balance <em>and</em> contributes to the pool.</li>
+                <li><strong>Offerings</strong> — When you send Fisherman's Coins as an offering to another believer, the Rand value of those coins (R50 per coin) is added to the pool.</li>
+                <li><strong>Coin Purchases</strong> — When you buy Fisherman's Coins with your deposited balance, the coin value contributes to the pool.</li>
+              </ul>
+              <p>Example: If three believers deposit R500 each and send R100 in offerings, the pool grows by R1,800.</p>
+
+              <h4>&#128200; 2. The 45% Distribution</h4>
+              <p>Every <strong>7 days</strong>, <strong>45% of the total pool</strong> is automatically distributed equally among all active believers. This is not optional — it is built into the system and happens automatically, like clockwork.</p>
+              <ul>
+                <li><strong>Automatic</strong> — No admin action needed. The system distributes every 7 days.</li>
+                <li><strong>Equal split</strong> — Every active believer receives the same amount, regardless of how much they deposited. The blessing is shared equally, just as the early church shared all things in common (Acts 2:44-45).</li>
+                <li><strong>Credited to wallet</strong> — The distribution goes directly into your wallet balance, where you can use it to buy coins, send offerings, or withdraw.</li>
+              </ul>
+              <p>Example: Pool = R1,800. 45% = R810. 3 active believers = <strong>R270 each</strong> credited to their wallets.</p>
+
+              <h4>&#128197; 3. The 7-Day Cycle</h4>
+              <p>The distribution runs on a weekly cycle:</p>
+              <ol>
+                <li><strong>Day 1</strong> — A distribution occurs. All active believers receive their equal share.</li>
+                <li><strong>Days 2-7</strong> — The pool continues to grow as believers deposit funds and send offerings.</li>
+                <li><strong>Day 7</strong> — The next distribution occurs with the new, larger pool.</li>
+              </ol>
+              <p>This creates a cycle of growth: as more people participate, the pool grows, and each weekly distribution becomes larger. The dashboard shows a live countdown to your next distribution.</p>
+
+              <h4>&#9758; 4. Who Qualifies?</h4>
+              <p>To receive pool distributions, you must be:</p>
+              <ul>
+                <li><strong>Active</strong> — Your account must be active (not suspended or deactivated).</li>
+                <li><strong>A Believer</strong> — Only members with the "Believer" role qualify. Admin accounts do not receive distributions.</li>
+                <li><strong>Registered</strong> — You must have a registered account on the platform.</li>
+              </ul>
+              <p>The more believers who join and participate, the larger the pool grows, and the more everyone receives.</p>
+
+              <h4>&#128176; 5. Where Does the Other 55% Go?</h4>
+              <p>The remaining <strong>55%</strong> of the pool stays in the Store-house to sustain operations, cover withdrawal processing fees, maintain the platform, and ensure the long-term health of the community. This is consistent with the principle of stewardship: <em>"Whoever can be trusted with very little can also be trusted with much"</em> — Luke 16:10.</p>
+
+              <h4>&#127942; 6. Summary</h4>
+              <ul>
+                <li><strong>Pool source:</strong> Deposits + Offerings + Coin purchases</li>
+                <li><strong>Distribution:</strong> 45% of total pool, every 7 days, automatically</li>
+                <li><strong>Split:</strong> Equal among all active believers</li>
+                <li><strong>Where it goes:</strong> Your wallet balance (can withdraw, buy coins, or send offerings)</li>
+                <li><strong>Remaining 55%:</strong> Retained for operations and platform sustainability</li>
+              </ul>
+              <p>"Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this," says the LORD Almighty, "and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it." — <strong>Malachi 3:10</strong></p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do referrals work and what do I earn?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Every member receives a unique referral code upon registration. When a new believer joins using your code, they are linked to your vine. You earn rewards from the <strong>weekly pool distribution</strong> based on:</p>
+              <ul>
+                <li>The number of active referrals you have generated</li>
+                <li>The activity level of your referred members (deposits, coin purchases, offerings)</li>
+                <li>Your own activity level on the platform</li>
+              </ul>
+              <p>This system is modeled after the principle of <em>disciple multiplication</em> — just as Andrew brought Peter to Jesus (John 1:40-42), you are rewarded for bringing others into the fellowship. <em>"Go and make disciples of all nations"</em> — Matthew 28:19.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I withdraw money from the Store-house?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>You can withdraw funds from your <strong>wallet balance</strong> (deposited funds) at any time. Navigate to <strong>Store-house Withdraw</strong> and complete the withdrawal form. Requirements:</p>
+              <ul>
+                <li>Minimum withdrawal: <strong>R50.00</strong></li>
+                <li>A <strong>5% administration fee</strong> applies to sustain Store-house operations</li>
+                <li>You must provide valid bank details (Bank, Account Number, Branch Code)</li>
+                <li>Processing time: <strong>24-48 hours</strong> via EFT</li>
+              </ul>
+              <p>Note: Coins that have been purchased cannot be directly withdrawn as cash. They must be used for offerings. Only your deposited wallet balance is available for withdrawal. <em>"The earth is the LORD's, and everything in it"</em> — Psalm 24:1.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I send coins to another believer?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! The offering system allows you to send your Fisherman's Coins to any registered believer. Go to <strong>Send Offering</strong>, enter the recipient's username, the number of coins, and an optional blessing message. The recipient will receive the coins in their account, and the Rand value is added to the Store-house pool. This is the heart of the community — <em>"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver"</em> — 2 Corinthians 9:7.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is the Temple of Fellowship?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>The Temple of Fellowship is the Store-house's real-time chat system, built on WebSocket technology. It allows all registered believers to communicate, share testimonies, encourage one another, and build community. As Scripture says: <em>"For where two or three gather in my name, there am I with them"</em> — Matthew 18:20. The chat is moderated and all members are expected to maintain a spirit of love, unity, and edification. <em>"Therefore encourage one another and build each other up"</em> — 1 Thessalonians 5:11.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Is The LORD's Store-house safe and trustworthy?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>The Store-house is built on the <strong>Pillar of Transparent Justice</strong> (Proverbs 11:3). All transactions are recorded and visible to the member. We operate on the biblical principle that <em>"everything that is exposed by the light becomes visible — and everything that is illuminated becomes a light"</em> — Ephesians 5:13. However, members should understand that this is a <strong>faith-based platform</strong>, not a bank. We encourage prudent financial stewardship and giving only what the Lord puts on your heart. <em>"Trust in the LORD with all your heart"</em> — Proverbs 3:5.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What happens if someone abuses the system?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>The Store-house follows the biblical model of discipline outlined in <strong>Matthew 18:15-17</strong>. Any member found creating multiple accounts, engaging in fraud, or manipulating the referral or distribution system will face:</p>
+              <ol>
+                <li><strong>Private confrontation</strong> — First, the matter is addressed privately</li>
+                <li><strong>Witnesses</strong> — If unresolved, witnesses are brought in</li>
+                <li><strong>Community review</strong> — The matter is brought before the community leadership</li>
+                <li><strong>Account suspension</strong> — If necessary, the account is permanently suspended</li>
+              </ol>
+              <p>We maintain the integrity of the Store-house so that all members can trust in the system. <em>"The integrity of the upright guides them"</em> — Proverbs 11:3.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Who runs The LORD's Store-house?</span>
+              <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p>The Store-house is managed by a team of faithful stewards who serve under the authority of Scripture. Our leadership operates on the principle of servant leadership as modeled by Jesus Christ: <em>"Whoever wants to become great among you must be your servant"</em> — Matthew 20:26. All administrative decisions are made prayerfully and in accordance with the Seven Pillars. The platform is overseen by the community elders who ensure that the Store-house remains true to its founding vision.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADMIN PANEL -->
+      <section id="section-admin" class="section">
+        <div class="section-header">
+          <div>
+            <h1>&#9881; Admin Panel</h1>
+            <p class="section-subtitle">"Whoever can be trusted with very little can also be trusted with much." — Luke 16:10</p>
+          </div>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-admin-tab="admin-dashboard">Dashboard</button>
+          <button class="admin-tab" data-admin-tab="admin-users">Users</button>
+          <button class="admin-tab" data-admin-tab="admin-withdrawals">Withdrawals</button>
+          <button class="admin-tab" data-admin-tab="admin-transactions">Transactions</button>
+          <button class="admin-tab" data-admin-tab="admin-pool">Pool</button>
+        </div>
+
+        <!-- ADMIN DASHBOARD -->
+        <div id="admin-dashboard" class="admin-panel active">
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <div class="asc-icon users-icon">&#128101;</div>
+              <div class="asc-info">
+                <h3 id="admin-total-users">0</h3>
+                <p>Total Users</p>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-icon active-icon">&#9989;</div>
+              <div class="asc-info">
+                <h3 id="admin-active-users">0</h3>
+                <p>Active Users</p>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-icon pool-icon">&#8371;</div>
+              <div class="asc-info">
+                <h3 id="admin-total-pool">R 0</h3>
+                <p>Total Pool</p>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-icon dist-icon">&#9733;</div>
+              <div class="asc-info">
+                <h3 id="admin-pool-distributable">R 0</h3>
+                <p>Distributable (45%)</p>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-icon deposit-icon">&#9670;</div>
+              <div class="asc-info">
+                <h3 id="admin-total-deposits">R 0</h3>
+                <p>Total Deposits</p>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-icon withdraw-icon">&#9669;</div>
+              <div class="asc-info">
+                <h3 id="admin-total-withdrawn">R 0</h3>
+                <p>Total Withdrawn</p>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-icon offering-icon">&#10084;</div>
+              <div class="asc-info">
+                <h3 id="admin-total-offerings">R 0</h3>
+                <p>Total Offerings</p>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-icon pending-icon">&#9200;</div>
+              <div class="asc-info">
+                <h3 id="admin-pending-withdrawals">0</h3>
+                <p>Pending Withdrawals</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN USERS -->
+        <div id="admin-users" class="admin-panel">
+          <div class="card">
+            <h3>&#128101; User Management</h3>
+            <div class="admin-search-bar">
+              <input type="text" id="admin-user-search" placeholder="Search by name, username, or email...">
+            </div>
+            <div id="admin-users-list" class="admin-table-container">
+              <p class="empty-state">Loading users...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN WITHDRAWALS -->
+        <div id="admin-withdrawals" class="admin-panel">
+          <div class="card">
+            <h3>&#9883; Withdrawal Management</h3>
+            <div class="admin-filter-bar">
+              <button class="admin-filter-btn active" data-filter="pending">Pending</button>
+              <button class="admin-filter-btn" data-filter="completed">Completed</button>
+              <button class="admin-filter-btn" data-filter="rejected">Rejected</button>
+              <button class="admin-filter-btn" data-filter="">All</button>
+            </div>
+            <div id="admin-withdrawals-list" class="admin-table-container">
+              <p class="empty-state">Loading withdrawals...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN TRANSACTIONS -->
+        <div id="admin-transactions" class="admin-panel">
+          <div class="card">
+            <h3>&#128203; All Transactions</h3>
+            <div id="admin-transactions-list" class="admin-table-container">
+              <p class="empty-state">Loading transactions...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN POOL -->
+        <div id="admin-pool" class="admin-panel">
+          <div class="card">
+            <h3>&#8371; Pool Management</h3>
+            <p class="card-verse">"Honor the LORD with your wealth, with the firstfruits of all your crops." — Proverbs 3:9</p>
+            <div class="pool-admin-info">
+              <div class="pai-row">
+                <span>Total Pool</span>
+                <strong id="admin-pool-total">R 0.00</strong>
+              </div>
+              <div class="pai-row">
+                <span>Distributable (45%)</span>
+                <strong id="admin-pool-dist">R 0.00</strong>
+              </div>
+              <div class="pai-row">
+                <span>Already Distributed</span>
+                <strong id="admin-pool-distributed">R 0.00</strong>
+              </div>
+              <div class="pai-divider"></div>
+              <div class="pai-row pai-available">
+                <span>Available to Distribute</span>
+                <strong id="admin-pool-available">R 0.00</strong>
+              </div>
+            </div>
+            <div class="pool-admin-auto">
+              <h4>&#9889; Auto-Distribution</h4>
+              <p>The pool distributes <strong>45%</strong> automatically every <strong>7 days</strong> among all active believers equally.</p>
+              <div class="pai-row">
+                <span>Next Auto-Distribution</span>
+                <strong id="admin-pool-next-dist">Loading...</strong>
+              </div>
+              <div class="pai-row">
+                <span>Last Distribution</span>
+                <strong id="admin-pool-last-dist">Never</strong>
+              </div>
+            </div>
+            <div class="pool-admin-actions">
+              <button id="admin-distribute-btn" class="btn btn-primary btn-lg">Force Distribute Now</button>
+              <p class="pool-dist-note">Manually trigger an immediate distribution (bypasses the 7-day timer).</p>
+            </div>
+            <div id="pool-dist-result" class="success-msg hidden"></div>
+          </div>
+
+          <div class="card">
+            <h3>&#128203; Distribution History</h3>
+            <div id="admin-dist-history" class="admin-table-container">
+              <p class="empty-state">No distributions yet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toast-container"></div>
+
+  <!-- FLOATING SOCIAL SHARE -->
+  <div class="social-share-float">
+    <a id="share-whatsapp-float" class="share-whatsapp" href="#" target="_blank" rel="noopener noreferrer" title="Share on WhatsApp">
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="white"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.132 6.744 3.054 9.378L1.054 31.25l6.118-1.97A15.906 15.906 0 0 0 16.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.34 22.612c-.39 1.1-1.932 2.014-3.166 2.28-.844.18-1.946.322-5.658-1.216-4.75-1.966-7.806-6.76-8.04-7.074-.226-.314-1.866-2.486-1.866-4.742 0-2.256 1.184-3.36 1.606-3.816.39-.424.936-.56 1.244-.56.312 0 .62.004.89.016.284.012.664-.106 1.034.788.39.948 1.324 3.23 1.44 3.466.116.236.194.51.04.824-.15.316-.224.512-.44.786-.216.274-.436.49-.66.792-.196.256-.412.53-.168.942.244.41 1.084 1.79 2.326 2.9 1.6 1.43 2.944 1.874 3.378 2.082.324.156.68.118.882-.14.258-.332.578-.854.898-1.376.226-.37.51-.414.856-.28.348.128 2.198 1.038 2.576 1.228.378.19.63.284.724.442.094.158.094.914-.296 1.824z"/></svg>
+    </a>
+    <a id="share-facebook-float" class="share-facebook" href="#" target="_blank" rel="noopener noreferrer" title="Share on Facebook">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a id="share-tiktok-float" class="share-tiktok" href="#" target="_blank" rel="noopener noreferrer" title="Share on TikTok">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9a6.27 6.27 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.3a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 5.58 2.18v-3.36z"/></svg>
+    </a>
+  </div>
+
+  <!-- SHARE SECTION IN SIDEBAR -->
+  <div id="whatsapp-share-sidebar" class="whatsapp-sidebar-box" style="display:none;">
+    <p>Share on WhatsApp</p>
+    <a id="whatsapp-share-sidebar-link" class="whatsapp-btn-sidebar" href="#" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 32 32" width="18" height="18" fill="white"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.132 6.744 3.054 9.378L1.054 31.25l6.118-1.97A15.906 15.906 0 0 0 16.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.34 22.612c-.39 1.1-1.932 2.014-3.166 2.28-.844.18-1.946.322-5.658-1.216-4.75-1.966-7.806-6.76-8.04-7.074-.226-.314-1.866-2.486-1.866-4.742 0-2.256 1.184-3.36 1.606-3.816.39-.424.936-.56 1.244-.56.312 0 .62.004.89.016.284.012.664-.106 1.034.788.39.948 1.324 3.23 1.44 3.466.116.236.194.51.04.824-.15.316-.224.512-.44.786-.216.274-.436.49-.66.792-.196.256-.412.53-.168.942.244.41 1.084 1.79 2.326 2.9 1.6 1.43 2.944 1.874 3.378 2.082.324.156.68.118.882-.14.258-.332.578-.854.898-1.376.226-.37.51-.414.856-.28.348.128 2.198 1.038 2.576 1.228.378.19.63.284.724.442.094.158.094.914-.296 1.824z"/></svg>
+      Share on WhatsApp
+    </a>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/chat.js"></script>
+  <script src="/js/wallet.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

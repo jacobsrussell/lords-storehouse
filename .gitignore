@@ -1,0 +1,8 @@
+node_modules/
+data/db.json
+cf-err.txt
+cf-out.txt
+lt-error.txt
+lt-output.txt
+lt-url.txt
+.env
