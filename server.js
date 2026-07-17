@@ -28,6 +28,13 @@ app.get('/api/tunnel-url', (req, res) => {
 
 function readDB() {
   try {
+    if (!fs.existsSync(DB_PATH)) {
+      const dir = path.dirname(DB_PATH);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      const defaultDB = { users: [], transactions: [], messages: [], offerings: [], referrals: [], pool: { total: 0, distributed: 0, lastDistributionAt: null }, distributionHistory: [] };
+      fs.writeFileSync(DB_PATH, JSON.stringify(defaultDB, null, 2));
+      return defaultDB;
+    }
     const db = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
     if (!db.pool) db.pool = { total: 0, distributed: 0, lastDistributionAt: null };
     if (!db.pool.lastDistributionAt) db.pool.lastDistributionAt = null;
