@@ -130,6 +130,28 @@
       "role": "believer",
       "isActive": true,
       "authToken": "95ffd921-06ca-4679-9169-59ed6824580f"
+    },
+    {
+      "id": "16c5bd73-76ba-448d-bc7a-a6e3788af76c",
+      "username": "Jacobs ",
+      "email": "lovesdevaan@gmail.com",
+      "password": "$2a$10$CSUNCnoQeunoxtFuPqhKuuxaXoa6JPjx4ESXiSbwEbOP2FrJz/V6q",
+      "fullName": "Devon ",
+      "phone": "0798443215",
+      "referralCode": "343F8367",
+      "referredBy": "Storehouse",
+      "coins": 0,
+      "balance": 0,
+      "totalDeposited": 0,
+      "totalWithdrawn": 0,
+      "totalOfferings": 0,
+      "totalReferralEarnings": 0,
+      "referralCount": 0,
+      "joinedAt": "2026-07-19T17:56:45.397Z",
+      "lastWithdrawalAt": null,
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Jacobs ",
+      "role": "believer",
+      "isActive": true
     }
   ],
   "transactions": [
