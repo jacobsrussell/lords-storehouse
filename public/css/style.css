@@ -2548,13 +2548,7 @@ body {
 
 /* ===== SOCIAL SHARE BUTTONS ===== */
 .social-share-float {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  z-index: 9998;
+  display: none !important;
 }
 
 .social-share-float a {
@@ -2600,20 +2594,7 @@ body {
 }
 
 .whatsapp-float {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-  z-index: 9998;
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-decoration: none;
+  display: none !important;
 }
 
 .whatsapp-float:hover {
