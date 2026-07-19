@@ -6,5 +6,17 @@
     "androidScheme": "https",
     "url": "https://lords-storehouse.onrender.com",
     "cleartext": true
+  },
+  "android": {
+    "backgroundColor": "#2d0a2e",
+    "allowMixedContent": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "launchShowDuration": 2000,
+      "backgroundColor": "#2d0a2e",
+      "showSpinner": false
+    }
   }
 }

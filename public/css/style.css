@@ -68,12 +68,22 @@ body {
   padding: 2rem;
 }
 
-.cross-icon {
-  font-size: 4rem;
+.cross-icon,
+.preloader-logo {
+  width: 120px;
+  height: 120px;
   animation: pulse-glow 2s ease-in-out infinite;
   margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px rgba(212, 168, 67, 0.4));
+  object-fit: contain;
+}
+
+.cross-icon {
+  font-size: 4rem;
   color: var(--gold);
   text-shadow: 0 0 40px rgba(212, 168, 67, 0.5);
+  width: auto;
+  height: auto;
 }
 
 @keyframes pulse-glow {
@@ -168,12 +178,22 @@ body {
   max-width: 480px;
 }
 
-.auth-cross {
-  font-size: 3.5rem;
+.auth-cross,
+.auth-logo {
+  width: 140px;
+  height: 140px;
   color: var(--gold);
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 60px rgba(212, 168, 67, 0.4);
+  filter: drop-shadow(0 0 30px rgba(212, 168, 67, 0.3));
   animation: pulse-glow 3s ease-in-out infinite;
+  object-fit: contain;
+}
+
+.auth-cross {
+  font-size: 3.5rem;
+  text-shadow: 0 0 60px rgba(212, 168, 67, 0.4);
+  width: auto;
+  height: auto;
 }
 
 .auth-hero h1 {
@@ -469,10 +489,21 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.sidebar-cross {
-  font-size: 1.8rem;
+.sidebar-cross,
+.sidebar-logo {
   color: var(--gold);
   margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 10px rgba(212, 168, 67, 0.3));
+}
+
+.sidebar-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.sidebar-cross {
+  font-size: 1.8rem;
 }
 
 .sidebar-header h3 {
@@ -581,6 +612,19 @@ body {
   font-size: 0.85rem;
   color: var(--gold-light);
   letter-spacing: 1px;
+}
+
+.mobile-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-header-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(212, 168, 67, 0.3));
 }
 
 .menu-btn {
