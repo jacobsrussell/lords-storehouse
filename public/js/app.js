@@ -514,21 +514,21 @@ function updateSocialLinks() {
   if (sidebarLink) sidebarLink.href = buildWhatsAppUrl(fullMsg);
 }
 
-const origRefreshDashboard = refreshDashboard;
-async function refreshDashboardWithWA() {
-  await origRefreshDashboard();
+// Update social links after every dashboard refresh
+const _origInitDashboard = initDashboard;
+initDashboard = async function() {
+  await _origInitDashboard();
   updateSocialLinks();
-}
+};
 
-// Hook into login/register/init
-const origInitDashboard = initDashboard;
-async function initDashboardWithWA() {
-  await origInitDashboard();
+const _origRefreshDashboard = refreshDashboard;
+refreshDashboard = async function() {
+  await _origRefreshDashboard();
   updateSocialLinks();
-}
+};
 
 // Re-assign on load
 window.addEventListener('load', async () => {
   await fetchShareUrl();
-  setTimeout(updateSocialLinks, 3000);
+  if (currentUser) updateSocialLinks();
 });

@@ -1,0 +1,261 @@
+{
+  "users": [
+    {
+      "id": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "username": "testuser",
+      "email": "test@faith.com",
+      "password": "$2a$10$csgbYr6Bcdzd/mpQ1m8QPe1eN.YXTRB/w5Olu.e3m/ymH6rxfe8EG",
+      "fullName": "Test Believer",
+      "phone": "+27821234567",
+      "referralCode": "8964A34A",
+      "referredBy": null,
+      "coins": 3,
+      "balance": 380,
+      "totalDeposited": 500,
+      "totalWithdrawn": 100,
+      "totalOfferings": 100,
+      "totalReferralEarnings": 0,
+      "referralCount": 0,
+      "joinedAt": "2026-07-16T18:32:10.921Z",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=testuser",
+      "role": "believer",
+      "isActive": true,
+      "lastWithdrawalAt": "2026-07-16T18:47:36.827Z"
+    },
+    {
+      "id": "4e8775ed-9094-4883-8640-83f47990c81b",
+      "username": "grace",
+      "email": "grace@faith.com",
+      "password": "$2a$10$qCwHqRfZiJ4GXpIuLRd2O.RFP3MEvJ0hKCz/9O38IeqyB9KpluFqq",
+      "fullName": "Grace Moyo",
+      "phone": "+27831234567",
+      "referralCode": "582855AD",
+      "referredBy": "TESTUSER",
+      "coins": 2,
+      "balance": 230,
+      "totalDeposited": 0,
+      "totalWithdrawn": 0,
+      "totalOfferings": 0,
+      "totalReferralEarnings": 0,
+      "referralCount": 0,
+      "joinedAt": "2026-07-16T18:32:32.242Z",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=grace",
+      "role": "believer",
+      "isActive": true
+    },
+    {
+      "id": "18605b69-1835-4cda-ab24-6be3d9d2be72",
+      "username": "jacobs",
+      "email": "jacobsrussell27@gmail.com",
+      "password": "$2a$10$f0NCa6C6fWDiZp.lDY9YUushWFacZC3mHEfrSE0nT.tofZkMy/Uh2",
+      "fullName": "russell",
+      "phone": "+27 0624174270",
+      "referralCode": "ECC2B6BA",
+      "referredBy": null,
+      "coins": 0,
+      "balance": 230,
+      "totalDeposited": 0,
+      "totalWithdrawn": 0,
+      "totalOfferings": 0,
+      "totalReferralEarnings": 0,
+      "referralCount": 0,
+      "joinedAt": "2026-07-16T18:36:57.585Z",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=jacobs",
+      "role": "believer",
+      "isActive": true
+    },
+    {
+      "id": "76536039-51c6-4bae-9d83-44d0793f27b5",
+      "username": "admin",
+      "email": "admin@storehouse.faith",
+      "password": "$2a$10$CSaAfJe8aAxe2pegX0AvjOMrKYqjRmv8bA1.3E3dvLG8kCQL87zvi",
+      "fullName": "Store-house Administrator",
+      "phone": "",
+      "referralCode": "BF1D4CDE",
+      "referredBy": null,
+      "coins": 0,
+      "balance": 0,
+      "totalDeposited": 0,
+      "totalWithdrawn": 0,
+      "totalOfferings": 0,
+      "totalReferralEarnings": 0,
+      "referralCount": 0,
+      "joinedAt": "2026-07-16T20:30:07.472Z",
+      "lastWithdrawalAt": null,
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=admin",
+      "role": "admin",
+      "isActive": true
+    },
+    {
+      "id": "931a782d-6e07-44fb-9c1f-5244346c11af",
+      "username": "the Witness",
+      "email": "rjaco855@gmail.com",
+      "password": "$2a$10$xZetDJbXfdBJP6vwYkZ7DeQmrlN04bFai7/GR.h7oXyBWZ3LAiS2y",
+      "fullName": "russell2026",
+      "phone": "+27 0624174270",
+      "referralCode": "A46CAAA5",
+      "referredBy": null,
+      "coins": 0,
+      "balance": 0,
+      "totalDeposited": 0,
+      "totalWithdrawn": 0,
+      "totalOfferings": 0,
+      "totalReferralEarnings": 0,
+      "referralCount": 0,
+      "joinedAt": "2026-07-18T21:05:02.171Z",
+      "lastWithdrawalAt": null,
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=the Witness",
+      "role": "believer",
+      "isActive": true
+    }
+  ],
+  "transactions": [
+    {
+      "id": "e10ab239-b6ee-43f9-979a-1d555ab7832f",
+      "userId": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "type": "deposit",
+      "amount": 500,
+      "reference": "EFT-PROOF-123",
+      "status": "completed",
+      "createdAt": "2026-07-16T18:32:21.993Z"
+    },
+    {
+      "id": "6f4437cd-8f47-4a1e-85ad-48c945067d22",
+      "userId": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "type": "buy_coins",
+      "amount": 5,
+      "cost": 250,
+      "status": "completed",
+      "createdAt": "2026-07-16T18:32:22.104Z"
+    },
+    {
+      "id": "dba7f72f-b442-404e-a896-d59678a755ee",
+      "userId": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "type": "offering_sent",
+      "amount": 2,
+      "value": 100,
+      "recipientUsername": "grace",
+      "status": "completed",
+      "createdAt": "2026-07-16T18:32:32.581Z"
+    },
+    {
+      "id": "c1f2ecb1-b8ec-4816-833a-b834ffe65beb",
+      "userId": "4e8775ed-9094-4883-8640-83f47990c81b",
+      "type": "offering_received",
+      "amount": 2,
+      "value": 100,
+      "senderUsername": "testuser",
+      "status": "completed",
+      "createdAt": "2026-07-16T18:32:32.581Z"
+    },
+    {
+      "id": "49852c1e-367a-4bd2-adf1-b0c56a1c1a27",
+      "userId": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "type": "withdrawal",
+      "amount": 100,
+      "fee": 5,
+      "netAmount": 95,
+      "bankDetails": {
+        "bankName": "FNB",
+        "accountNumber": "1234567890",
+        "branchCode": "250655",
+        "accountName": "Test Believer"
+      },
+      "status": "pending",
+      "createdAt": "2026-07-16T18:47:36.828Z",
+      "processedAt": null,
+      "estimatedCompletion": "2026-07-18T18:47:36.828Z"
+    },
+    {
+      "id": "217c8049-f961-4a35-b29c-2dfe01ca3da5",
+      "userId": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "type": "pool_distribution",
+      "amount": 140,
+      "status": "completed",
+      "createdAt": "2026-07-16T21:20:50.849Z"
+    },
+    {
+      "id": "130ff5f1-f3b5-4294-8bd0-1fb44e92fa9e",
+      "userId": "4e8775ed-9094-4883-8640-83f47990c81b",
+      "type": "pool_distribution",
+      "amount": 140,
+      "status": "completed",
+      "createdAt": "2026-07-16T21:20:50.849Z"
+    },
+    {
+      "id": "c5e68f6e-f1de-415f-8bf4-6845eb40544f",
+      "userId": "18605b69-1835-4cda-ab24-6be3d9d2be72",
+      "type": "pool_distribution",
+      "amount": 140,
+      "status": "completed",
+      "createdAt": "2026-07-16T21:20:50.849Z"
+    },
+    {
+      "id": "8e372bc3-43f3-46f4-88fe-89a99a3e6df1",
+      "userId": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "type": "pool_distribution",
+      "amount": 90,
+      "status": "completed",
+      "createdAt": "2026-07-16T21:52:31.706Z"
+    },
+    {
+      "id": "092a44ff-48b0-4741-a87b-9c81814f59df",
+      "userId": "4e8775ed-9094-4883-8640-83f47990c81b",
+      "type": "pool_distribution",
+      "amount": 90,
+      "status": "completed",
+      "createdAt": "2026-07-16T21:52:31.706Z"
+    },
+    {
+      "id": "18b3e0aa-a536-4da5-a69f-009e2e3752c1",
+      "userId": "18605b69-1835-4cda-ab24-6be3d9d2be72",
+      "type": "pool_distribution",
+      "amount": 90,
+      "status": "completed",
+      "createdAt": "2026-07-16T21:52:31.706Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "58b1d628-4220-4f09-8c16-706754038edb",
+      "userId": "18605b69-1835-4cda-ab24-6be3d9d2be72",
+      "username": "jacobs",
+      "text": "In God al things are possible",
+      "timestamp": "2026-07-16T21:07:50.444Z"
+    },
+    {
+      "id": "d52d9dc5-f82f-4de5-9a0f-bf224e83e733",
+      "userId": "18605b69-1835-4cda-ab24-6be3d9d2be72",
+      "username": "jacobs",
+      "text": "Hello to all believers",
+      "timestamp": "2026-07-17T16:46:22.503Z"
+    }
+  ],
+  "offerings": [
+    {
+      "id": "f0794f9a-efb4-4918-b125-4f21556504a9",
+      "senderId": "0ab2b09c-8a6a-4777-85ff-6f4fb92ebf2b",
+      "recipientId": "4e8775ed-9094-4883-8640-83f47990c81b",
+      "coinAmount": 2,
+      "value": 100,
+      "message": "Bless you, sister in Christ!",
+      "createdAt": "2026-07-16T18:32:32.581Z"
+    }
+  ],
+  "referrals": [],
+  "pool": {
+    "total": 600,
+    "distributed": 270,
+    "lastDistributionAt": "2026-07-16T21:52:31.706Z"
+  },
+  "distributionHistory": [
+    {
+      "id": "29f448cc-daef-4879-8823-0e43405918e6",
+      "totalPool": 600,
+      "distributed": 270,
+      "perUser": 90,
+      "recipients": 3,
+      "timestamp": "2026-07-16T21:52:31.706Z"
+    }
+  ]
+}
