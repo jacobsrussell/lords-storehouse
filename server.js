@@ -78,9 +78,28 @@ const sessions = {};
 
 function authMiddleware(req, res, next) {
   const token = req.headers.authorization?.replace('Bearer ', '');
-  if (!token || !sessions[token]) return res.status(401).json({ error: 'Unauthorized' });
-  req.user = sessions[token];
-  next();
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+  const db = readDB();
+
+  // Check in-memory session first (fast)
+  if (sessions[token]) {
+    const user = db.users.find(u => u.id === sessions[token].id);
+    if (user && user.isActive !== false) {
+      req.user = user;
+      return next();
+    }
+  }
+
+  // Fallback: check persisted authToken in DB (survives server restarts)
+  const user = db.users.find(u => u.authToken === token);
+  if (user && user.isActive !== false) {
+    req.user = user;
+    sessions[token] = { id: user.id, username: user.username };
+    return next();
+  }
+
+  return res.status(401).json({ error: 'Unauthorized' });
 }
 
 app.post('/api/register', async (req, res) => {
@@ -136,6 +155,8 @@ app.post('/api/register', async (req, res) => {
   writeDB(db);
   const token = uuidv4();
   sessions[token] = { id: user.id, username: user.username };
+  user.authToken = token;
+  writeDB(db);
   res.json({ token, user: sanitizeUser(user) });
 });
 
@@ -148,6 +169,8 @@ app.post('/api/login', async (req, res) => {
   }
   const token = uuidv4();
   sessions[token] = { id: user.id, username: user.username };
+  user.authToken = token;
+  writeDB(db);
   res.json({ token, user: sanitizeUser(user) });
 });
 
@@ -429,14 +452,23 @@ const clients = new Map();
 wss.on('connection', (ws, req) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const token = url.searchParams.get('token');
-  if (!token || !sessions[token]) {
-    ws.close(1008, 'Unauthorized');
-    return;
-  }
-  const user = sessions[token];
-  clients.set(user.id, ws);
+  if (!token) { ws.close(1008, 'Unauthorized'); return; }
 
-  broadcast({ type: 'system', text: `${user.username} has entered the Temple of Fellowship`, timestamp: new Date().toISOString() });
+  let wsUser = null;
+  if (sessions[token]) {
+    const db = readDB();
+    wsUser = db.users.find(u => u.id === sessions[token].id);
+  }
+  if (!wsUser) {
+    const db = readDB();
+    wsUser = db.users.find(u => u.authToken === token);
+    if (wsUser) sessions[token] = { id: wsUser.id, username: wsUser.username };
+  }
+  if (!wsUser) { ws.close(1008, 'Unauthorized'); return; }
+
+  clients.set(wsUser.id, ws);
+
+  broadcast({ type: 'system', text: `${wsUser.username} has entered the Temple of Fellowship`, timestamp: new Date().toISOString() });
 
   ws.on('message', (data) => {
     try {
@@ -478,12 +510,7 @@ function sanitizeUser(user) {
 }
 
 function adminMiddleware(req, res, next) {
-  const token = req.headers.authorization?.replace('Bearer ', '');
-  if (!token || !sessions[token]) return res.status(401).json({ error: 'Unauthorized' });
-  const db = readDB();
-  const user = db.users.find(u => u.id === sessions[token].id);
-  if (!user || user.role !== 'admin') return res.status(403).json({ error: 'Admin access required' });
-  req.user = { id: user.id, username: user.username, role: user.role };
+  if (!req.user || req.user.role !== 'admin') return res.status(403).json({ error: 'Admin access required' });
   next();
 }
 
