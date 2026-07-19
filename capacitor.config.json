@@ -1,0 +1,10 @@
+{
+  "appId": "com.lordsstorehouse.app",
+  "appName": "The LORD's Store-house",
+  "webDir": "public",
+  "server": {
+    "androidScheme": "https",
+    "url": "https://lords-storehouse.onrender.com",
+    "cleartext": true
+  }
+}

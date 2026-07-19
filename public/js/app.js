@@ -7,12 +7,18 @@ let currentUser = null;
 let authToken = localStorage.getItem('storehouse_token');
 
 // ===== API HELPERS =====
+const RENDER_URL = 'https://lords-storehouse.onrender.com';
+function getBaseUrl() {
+  if (window.location.protocol === 'capacitor:') return RENDER_URL;
+  return '';
+}
+
 async function api(url, method = 'GET', body = null) {
   const headers = { 'Content-Type': 'application/json' };
   if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
   const opts = { method, headers };
   if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(url, opts);
+  const res = await fetch(getBaseUrl() + url, opts);
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Something went wrong');
   return data;
@@ -448,7 +454,7 @@ let _dynamicShareUrl = null;
 
 async function fetchShareUrl() {
   try {
-    const res = await fetch('/api/tunnel-url');
+    const res = await fetch(getBaseUrl() + '/api/tunnel-url');
     const data = await res.json();
     _dynamicShareUrl = data.url;
   } catch (e) {

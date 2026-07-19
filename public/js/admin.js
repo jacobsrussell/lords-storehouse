@@ -4,7 +4,9 @@
 
 let allAdminUsers = [];
 let allAdminWithdrawals = [];
+let allAdminDeposits = [];
 let currentWithdrawalFilter = 'pending';
+let currentDepositFilter = 'pending';
 
 function isAdmin() {
   return currentUser && currentUser.role === 'admin';
@@ -43,10 +45,20 @@ document.querySelectorAll('.admin-filter-btn').forEach(btn => {
   });
 });
 
+document.querySelectorAll('.admin-deposit-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.admin-deposit-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentDepositFilter = btn.dataset.filter;
+    loadAdminDeposits();
+  });
+});
+
 function loadAdminSection(section) {
   if (!isAdmin()) return;
   switch (section) {
     case 'admin-dashboard': loadAdminStats(); break;
+    case 'admin-deposits': loadAdminDeposits(); break;
     case 'admin-users': loadAdminUsers(); break;
     case 'admin-withdrawals': loadAdminWithdrawals(); break;
     case 'admin-transactions': loadAdminTransactions(); break;
@@ -131,6 +143,81 @@ async function toggleUserActive(userId, isActive) {
     await api(`/api/admin/users/${userId}`, 'PUT', { isActive });
     showToast(`User ${isActive ? 'activated' : 'deactivated'} successfully.`, 'success');
     loadAdminUsers();
+  } catch (err) {
+    showToast(err.message, 'error');
+  }
+}
+
+// ===== DEPOSIT VERIFICATION =====
+async function loadAdminDeposits() {
+  try {
+    const statusParam = currentDepositFilter ? `?status=${currentDepositFilter}` : '';
+    allAdminDeposits = await api(`/api/admin/deposits${statusParam}`);
+    renderAdminDeposits(allAdminDeposits);
+  } catch (err) {
+    console.error('Admin deposits error:', err);
+  }
+}
+
+function renderAdminDeposits(deposits) {
+  const container = document.getElementById('admin-deposits-list');
+  if (deposits.length === 0) {
+    container.innerHTML = '<p class="empty-state">No deposits found.</p>';
+    return;
+  }
+  container.innerHTML = `<table class="admin-table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Amount</th>
+        <th>Reference</th>
+        <th>Proof</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${deposits.map(d => {
+        const date = new Date(d.createdAt).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const proofHtml = d.proofFile ? `<a href="${d.proofFile}" target="_blank" class="proof-link">View</a>` : '<small style="color:var(--text-muted)">No proof</small>';
+        return `<tr>
+          <td><div class="user-cell"><div><strong>${d.user?.fullName || 'Unknown'}</strong><br><small>@${d.user?.username || 'N/A'}</small></div></div></td>
+          <td><strong>R ${(d.amount || 0).toFixed(2)}</strong></td>
+          <td>${d.reference || '-'}</td>
+          <td>${proofHtml}</td>
+          <td><span class="admin-badge badge-${d.status}">${d.status}</span></td>
+          <td>${date}</td>
+          <td>
+            ${d.status === 'pending' ? `
+              <button class="admin-action-btn btn-approve" onclick="approveDeposit('${d.id}')">Approve</button>
+              <button class="admin-action-btn btn-reject" onclick="rejectDeposit('${d.id}')">Reject</button>
+            ` : d.status === 'completed' ? `<small>Approved</small>` : `<small>Rejected</small>`}
+          </td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function approveDeposit(id) {
+  try {
+    await api(`/api/admin/deposits/${id}/approve`, 'PUT');
+    showToast('Deposit approved and funds credited.', 'success');
+    loadAdminDeposits();
+    loadAdminStats();
+  } catch (err) {
+    showToast(err.message, 'error');
+  }
+}
+
+async function rejectDeposit(id) {
+  const reason = prompt('Reason for rejection (optional):');
+  try {
+    await api(`/api/admin/deposits/${id}/reject`, 'PUT', { reason: reason || 'Rejected by administrator' });
+    showToast('Deposit rejected.', 'info');
+    loadAdminDeposits();
+    loadAdminStats();
   } catch (err) {
     showToast(err.message, 'error');
   }

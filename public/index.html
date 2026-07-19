@@ -273,16 +273,35 @@
                 <p><strong>Branch Code:</strong> 470010</p>
                 <p><strong>Reference:</strong> Your Username</p>
               </div>
-              <div class="form-group">
-                <label>Deposit Amount (ZAR)</label>
-                <input type="number" id="deposit-amount" placeholder="Enter amount in Rand" min="10" step="0.01">
-              </div>
-              <div class="form-group">
-                <label>EFT Reference / Proof of Payment</label>
-                <input type="text" id="deposit-ref" placeholder="Transaction reference number">
-              </div>
-              <button id="deposit-btn" class="btn btn-primary">Confirm Deposit</button>
-              <p class="info-note">Deposits are credited within 1-24 hours upon verification.</p>
+              <form id="deposit-form" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label>Deposit Amount (ZAR)</label>
+                  <input type="number" id="deposit-amount" name="amount" placeholder="Enter amount in Rand" min="10" step="0.01" required>
+                </div>
+                <div class="form-group">
+                  <label>EFT Reference</label>
+                  <input type="text" id="deposit-ref" name="reference" placeholder="Transaction reference number">
+                </div>
+                <div class="form-group">
+                  <label>Proof of Payment</label>
+                  <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem">Upload your bank screenshot or PDF as proof of payment.</p>
+                  <div class="file-upload-area" id="deposit-file-area">
+                    <input type="file" id="deposit-proof" name="proof" accept="image/*,.pdf" hidden>
+                    <div class="file-upload-placeholder" id="deposit-file-placeholder">
+                      <span class="file-upload-icon">&#128206;</span>
+                      <p>Click to upload bank screenshot or PDF</p>
+                      <small>JPG, PNG, GIF, WebP or PDF — Max 20MB</small>
+                    </div>
+                    <div class="file-upload-preview hidden" id="deposit-file-preview">
+                      <img id="deposit-file-img" src="" alt="Preview">
+                      <p id="deposit-file-name"></p>
+                      <button type="button" class="btn btn-sm" id="deposit-file-remove">Remove</button>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" id="deposit-btn" class="btn btn-primary">Submit Deposit for Verification</button>
+              </form>
+              <p class="info-note">Deposits require admin verification. You will be notified once approved.</p>
             </div>
           </div>
         </div>
@@ -1062,6 +1081,7 @@
 
         <div class="admin-tabs">
           <button class="admin-tab active" data-admin-tab="admin-dashboard">Dashboard</button>
+          <button class="admin-tab" data-admin-tab="admin-deposits">Deposits</button>
           <button class="admin-tab" data-admin-tab="admin-users">Users</button>
           <button class="admin-tab" data-admin-tab="admin-withdrawals">Withdrawals</button>
           <button class="admin-tab" data-admin-tab="admin-transactions">Transactions</button>
@@ -1126,6 +1146,23 @@
                 <h3 id="admin-pending-withdrawals">0</h3>
                 <p>Pending Withdrawals</p>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADMIN DEPOSITS -->
+        <div id="admin-deposits" class="admin-panel">
+          <div class="card">
+            <h3>&#128179; Deposit Verifications</h3>
+            <p class="card-verse">"Bring the whole tithe into the storehouse." — Malachi 3:10</p>
+            <div class="admin-filters">
+              <button class="admin-deposit-filter-btn active" data-filter="pending">Pending</button>
+              <button class="admin-deposit-filter-btn" data-filter="completed">Approved</button>
+              <button class="admin-deposit-filter-btn" data-filter="rejected">Rejected</button>
+              <button class="admin-deposit-filter-btn" data-filter="">All</button>
+            </div>
+            <div id="admin-deposits-list" class="admin-table-container">
+              <p class="empty-state">Loading deposits...</p>
             </div>
           </div>
         </div>

@@ -1,5 +1,9 @@
 node_modules/
 data/db.json
+uploads/
+android/
+*.apk
+.gradle/
 cf-err.txt
 cf-out.txt
 lt-error.txt

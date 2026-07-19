@@ -6,30 +6,94 @@ let withdrawalTimerInterval = null;
 let nextWithdrawalTime = null;
 
 // ===== DEPOSIT =====
-document.getElementById('deposit-btn')?.addEventListener('click', async () => {
-  const amount = parseFloat(document.getElementById('deposit-amount').value);
-  const reference = document.getElementById('deposit-ref').value;
+const depositForm = document.getElementById('deposit-form');
+if (depositForm) {
+  depositForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const amount = parseFloat(document.getElementById('deposit-amount').value);
+    const reference = document.getElementById('deposit-ref').value;
+    const proofInput = document.getElementById('deposit-proof');
 
-  if (!amount || amount <= 0) {
-    return showToast('Please enter a valid deposit amount.', 'error');
-  }
-  if (amount < 10) {
-    return showToast('Minimum deposit amount is R10.00.', 'error');
-  }
+    if (!amount || amount <= 0) {
+      return showToast('Please enter a valid deposit amount.', 'error');
+    }
+    if (amount < 10) {
+      return showToast('Minimum deposit amount is R10.00.', 'error');
+    }
+    if (!proofInput.files.length) {
+      return showToast('Please upload proof of payment (screenshot or PDF).', 'error');
+    }
 
-  try {
-    await api('/api/deposit', 'POST', { amount, reference });
-    showToast(
-      `R ${amount.toFixed(2)} deposited! "Bring the whole tithe into the storehouse." — Malachi 3:10`,
-      'success'
-    );
-    document.getElementById('deposit-amount').value = '';
-    document.getElementById('deposit-ref').value = '';
-    await refreshDashboard();
-  } catch (err) {
-    showToast(err.message, 'error');
+    const formData = new FormData();
+    formData.append('amount', amount);
+    formData.append('reference', reference || '');
+    formData.append('proof', proofInput.files[0]);
+
+    const depositBtn = document.getElementById('deposit-btn');
+    depositBtn.disabled = true;
+    depositBtn.textContent = 'Submitting...';
+
+    try {
+      const res = await fetch(getBaseUrl() + '/api/deposit', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${authToken}` },
+        body: formData
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Deposit failed');
+      showToast(
+        `Deposit of R ${amount.toFixed(2)} submitted for verification! "Bring the whole tithe into the storehouse." — Malachi 3:10`,
+        'success'
+      );
+      depositForm.reset();
+      document.getElementById('deposit-file-placeholder').classList.remove('hidden');
+      document.getElementById('deposit-file-preview').classList.add('hidden');
+      await refreshDashboard();
+    } catch (err) {
+      showToast(err.message, 'error');
+    } finally {
+      depositBtn.disabled = false;
+      depositBtn.textContent = 'Submit Deposit for Verification';
+    }
+  });
+}
+
+// ===== FILE UPLOAD HANDLER =====
+const depositFileArea = document.getElementById('deposit-file-area');
+const depositProofInput = document.getElementById('deposit-proof');
+const depositFilePlaceholder = document.getElementById('deposit-file-placeholder');
+const depositFilePreview = document.getElementById('deposit-file-preview');
+const depositFileImg = document.getElementById('deposit-file-img');
+const depositFileName = document.getElementById('deposit-file-name');
+const depositFileRemove = document.getElementById('deposit-file-remove');
+
+if (depositFileArea) {
+  depositFileArea.addEventListener('click', (e) => {
+    if (e.target !== depositFileRemove) depositProofInput.click();
+  });
+  depositProofInput.addEventListener('change', () => {
+    const file = depositProofInput.files[0];
+    if (!file) return;
+    depositFileName.textContent = file.name;
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (e) => { depositFileImg.src = e.target.result; };
+      reader.readAsDataURL(file);
+    } else {
+      depositFileImg.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect fill="%23333" width="80" height="80" rx="8"/><text fill="%23e94560" x="40" y="48" text-anchor="middle" font-size="28">PDF</text></svg>';
+    }
+    depositFilePlaceholder.classList.add('hidden');
+    depositFilePreview.classList.remove('hidden');
+  });
+  if (depositFileRemove) {
+    depositFileRemove.addEventListener('click', (e) => {
+      e.stopPropagation();
+      depositProofInput.value = '';
+      depositFilePlaceholder.classList.remove('hidden');
+      depositFilePreview.classList.add('hidden');
+    });
   }
-});
+}
 
 // ===== WITHDRAWAL =====
 document.getElementById('withdraw-btn')?.addEventListener('click', async () => {

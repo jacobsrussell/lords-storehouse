@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
 
 const app = express();
 const server = http.createServer(app);
@@ -15,8 +16,31 @@ const DB_PATH = path.join(__dirname, 'data', 'db.json');
 const COIN_VALUE = 50;
 const DISTRIBUTION_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000;
 const PUBLIC_DIR = path.join(__dirname, 'public');
+const UPLOADS_DIR = path.join(__dirname, 'uploads');
+
+if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, UPLOADS_DIR),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `deposit-${uuidv4()}${ext}`);
+  }
+});
+const upload = multer({
+  storage,
+  limits: { fileSize: 20 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const allowed = /jpeg|jpg|png|gif|webp|pdf/;
+    const ext = allowed.test(path.extname(file.originalname).toLowerCase());
+    const mime = allowed.test(file.mimetype) || file.mimetype.startsWith('image/') || file.mimetype === 'application/pdf';
+    if (ext || mime) cb(null, true);
+    else cb(new Error('Only images (JPG, PNG, GIF, WebP) and PDF files are allowed'));
+  }
+});
 
 app.use(express.json());
+app.use('/uploads', express.static(UPLOADS_DIR));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/tunnel-url', (req, res) => {
@@ -140,27 +164,26 @@ app.get('/api/me', authMiddleware, (req, res) => {
   res.json(sanitizeUser(user));
 });
 
-app.post('/api/deposit', authMiddleware, (req, res) => {
+app.post('/api/deposit', authMiddleware, upload.single('proof'), (req, res) => {
   const { amount, reference } = req.body;
   if (!amount || amount <= 0) return res.status(400).json({ error: 'Invalid amount' });
+  const depositAmount = parseFloat(amount);
+  const proofFile = req.file ? `/uploads/${req.file.filename}` : null;
   const db = readDB();
   const user = db.users.find(u => u.id === req.user.id);
   if (!user) return res.status(404).json({ error: 'User not found' });
-  const depositAmount = parseFloat(amount);
-  user.balance += depositAmount;
-  user.totalDeposited += depositAmount;
-  db.pool.total += depositAmount;
   db.transactions.push({
     id: uuidv4(),
     userId: user.id,
     type: 'deposit',
     amount: depositAmount,
     reference: reference || '',
-    status: 'completed',
+    proofFile: proofFile,
+    status: 'pending',
     createdAt: new Date().toISOString()
   });
   writeDB(db);
-  res.json({ success: true, balance: user.balance, coins: user.coins });
+  res.json({ success: true, message: 'Deposit submitted for verification. Admin will review your proof of payment.' });
 });
 
 app.post('/api/buy-coins', authMiddleware, (req, res) => {
@@ -562,6 +585,50 @@ app.put('/api/admin/withdrawals/:id/reject', adminMiddleware, (req, res) => {
     user.totalWithdrawn -= tx.amount;
     user.lastWithdrawalAt = null;
   }
+  tx.status = 'rejected';
+  tx.processedAt = new Date().toISOString();
+  tx.processedBy = req.user.id;
+  tx.rejectionReason = req.body.reason || 'Rejected by administrator';
+  writeDB(db);
+  res.json({ success: true, transaction: tx });
+});
+
+// ===== DEPOSIT VERIFICATION =====
+app.get('/api/admin/deposits', adminMiddleware, (req, res) => {
+  const db = readDB();
+  const status = req.query.status;
+  let deposits = db.transactions.filter(t => t.type === 'deposit');
+  if (status) deposits = deposits.filter(t => t.status === status);
+  deposits = deposits.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const enriched = deposits.map(d => {
+    const user = db.users.find(u => u.id === d.userId);
+    return { ...d, user: user ? { username: user.username, fullName: user.fullName, email: user.email } : null };
+  });
+  res.json(enriched);
+});
+
+app.put('/api/admin/deposits/:id/approve', adminMiddleware, (req, res) => {
+  const db = readDB();
+  const tx = db.transactions.find(t => t.id === req.params.id && t.type === 'deposit');
+  if (!tx) return res.status(404).json({ error: 'Deposit not found' });
+  if (tx.status !== 'pending') return res.status(400).json({ error: 'Deposit is not pending' });
+  const user = db.users.find(u => u.id === tx.userId);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  user.balance += tx.amount;
+  user.totalDeposited += tx.amount;
+  db.pool.total += tx.amount;
+  tx.status = 'completed';
+  tx.processedAt = new Date().toISOString();
+  tx.processedBy = req.user.id;
+  writeDB(db);
+  res.json({ success: true, transaction: tx });
+});
+
+app.put('/api/admin/deposits/:id/reject', adminMiddleware, (req, res) => {
+  const db = readDB();
+  const tx = db.transactions.find(t => t.id === req.params.id && t.type === 'deposit');
+  if (!tx) return res.status(404).json({ error: 'Deposit not found' });
+  if (tx.status !== 'pending') return res.status(400).json({ error: 'Deposit is not pending' });
   tx.status = 'rejected';
   tx.processedAt = new Date().toISOString();
   tx.processedBy = req.user.id;

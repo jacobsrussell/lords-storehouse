@@ -13,8 +13,9 @@ function connectChat() {
   }
   if (!authToken) return;
 
-  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-  const url = `${protocol}//${window.location.host}?token=${authToken}`;
+  const wsHost = window.location.protocol === 'capacitor:' ? 'lords-storehouse.onrender.com' : window.location.host;
+  const protocol = (window.location.protocol === 'https:' || window.location.protocol === 'capacitor:') ? 'wss:' : 'ws:';
+  const url = `${protocol}//${wsHost}?token=${authToken}`;
 
   chatWs = new WebSocket(url);
   window.chatWs = chatWs;
@@ -65,7 +66,7 @@ function updateChatStatus(connected) {
 
 async function loadChatHistory() {
   try {
-    const res = await fetch('/api/messages', {
+    const res = await fetch(getBaseUrl() + '/api/messages', {
       headers: { 'Authorization': `Bearer ${authToken}` }
     });
     const messages = await res.json();
