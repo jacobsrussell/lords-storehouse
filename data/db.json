@@ -107,6 +107,29 @@
       "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=the Witness",
       "role": "believer",
       "isActive": true
+    },
+    {
+      "id": "634a95e3-da83-4283-b01c-2a69da012c8a",
+      "username": "The Witness",
+      "email": "jacobsrussell@gmail.com",
+      "password": "$2a$10$dgDB.g9chAsGJCUhN8aSbOEDjA3BRNgzD71CtQaKV94ApSnDk5tSm",
+      "fullName": "Russell",
+      "phone": "0624174270",
+      "referralCode": "B5FD3DD1",
+      "referredBy": null,
+      "coins": 0,
+      "balance": 0,
+      "totalDeposited": 0,
+      "totalWithdrawn": 0,
+      "totalOfferings": 0,
+      "totalReferralEarnings": 0,
+      "referralCount": 0,
+      "joinedAt": "2026-07-19T15:13:43.837Z",
+      "lastWithdrawalAt": null,
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=The Witness",
+      "role": "believer",
+      "isActive": true,
+      "authToken": "95ffd921-06ca-4679-9169-59ed6824580f"
     }
   ],
   "transactions": [
