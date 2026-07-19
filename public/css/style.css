@@ -1653,6 +1653,16 @@ body {
   color: var(--purple-dark);
 }
 
+.chat-ref-code {
+  font-size: 0.65rem;
+  background: var(--purple-light);
+  color: var(--purple-dark);
+  padding: 0.1rem 0.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
 .chat-msg-meta .time {
   font-size: 0.7rem;
   color: var(--text-light);

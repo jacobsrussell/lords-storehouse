@@ -99,6 +99,7 @@ function appendChatMessage(msg, scroll = true) {
       <div class="chat-msg-body">
         <div class="chat-msg-meta">
           <span class="name">${msg.username}</span>
+          ${msg.referralCode ? `<span class="chat-ref-code">${msg.referralCode}</span>` : ''}
           <span class="time">${time}</span>
         </div>
         <div class="chat-msg-text">${escapeHtml(msg.text)}</div>

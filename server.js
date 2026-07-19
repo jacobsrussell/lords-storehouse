@@ -441,7 +441,7 @@ app.get('/api/messages', authMiddleware, (req, res) => {
   const messages = db.messages.slice(-100);
   const enriched = messages.map(m => {
     const u = db.users.find(usr => usr.id === m.userId);
-    return { ...m, username: u?.username || 'Unknown', avatar: u?.avatar || '' };
+    return { ...m, username: u?.username || 'Unknown', avatar: u?.avatar || '', referralCode: u?.referralCode || '' };
   });
   res.json(enriched);
 });
@@ -486,7 +486,7 @@ wss.on('connection', (ws, req) => {
         if (db.messages.length > 500) db.messages = db.messages.slice(-500);
         writeDB(db);
         const u = db.users.find(usr => usr.id === user.id);
-        broadcast({ ...chatMsg, avatar: u?.avatar || '' });
+        broadcast({ ...chatMsg, avatar: u?.avatar || '', referralCode: u?.referralCode || '' });
       }
     } catch (e) {}
   });
