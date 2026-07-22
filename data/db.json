@@ -106,7 +106,8 @@
       "lastWithdrawalAt": null,
       "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=the Witness",
       "role": "believer",
-      "isActive": true
+      "isActive": true,
+      "authToken": "f123aa7a-56aa-4850-a018-ca059abdbda2"
     },
     {
       "id": "634a95e3-da83-4283-b01c-2a69da012c8a",
